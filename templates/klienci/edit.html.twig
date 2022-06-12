@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Klienci{% endblock %}
+
+{% block body %}
+    <h1>Edit Klienci</h1>
+
+    {{ include('klienci/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_klienci_index') }}">back to list</a>
+
+    {{ include('klienci/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Klienci index{% endblock %}
+
+{% block body %}
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Imie</th>
+                <th>RodzajUslugi</th>
+                <th>DataGodzina</th>
+                <th>NumerTelefonu</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for klienci in kliencis %}
+            <tr>
+                <td>{{ klienci.id }}</td>
+                <td>{{ klienci.Imie }}</td>
+                <td>{{ klienci.RodzajUslugi }}</td>
+                <td>{{ klienci.DataGodzina ? klienci.DataGodzina|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ klienci.NumerTelefonu }}</td>
+                <td>
+                    <a href="{{ path('app_klienci_show', {'id': klienci.id}) }}">show</a>
+                    <a href="{{ path('app_klienci_edit', {'id': klienci.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_klienci_new') }}">Create new</a>
+{% endblock %}

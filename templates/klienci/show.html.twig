@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Klienci{% endblock %}
+
+{% block body %}
+    <h1>Klienci</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ klienci.id }}</td>
+            </tr>
+            <tr>
+                <th>Imie</th>
+                <td>{{ klienci.Imie }}</td>
+            </tr>
+            <tr>
+                <th>RodzajUslugi</th>
+                <td>{{ klienci.RodzajUslugi }}</td>
+            </tr>
+            <tr>
+                <th>DataGodzina</th>
+                <td>{{ klienci.DataGodzina ? klienci.DataGodzina|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>NumerTelefonu</th>
+                <td>{{ klienci.NumerTelefonu }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_klienci_index') }}">back to list</a>
+
+    <a href="{{ path('app_klienci_edit', {'id': klienci.id}) }}">edit</a>
+
+    {{ include('klienci/_delete_form.html.twig') }}
+{% endblock %}
