@@ -2,9 +2,11 @@
 
 namespace App\Repository;
 
+use App\Entity\Crud;
 use App\Entity\Klienci;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @extends ServiceEntityRepository<Klienci>
@@ -42,17 +44,7 @@ class KlienciRepository extends ServiceEntityRepository
 //    /**
 //     * @return Klienci[] Returns an array of Klienci objects
 //     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('k')
-//            ->andWhere('k.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('k.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+
 
 //    public function findOneBySomeField($value): ?Klienci
 //    {

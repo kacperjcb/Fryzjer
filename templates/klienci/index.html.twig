@@ -1,33 +1,34 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}Klienci index{% endblock %}
+{% block title %}Klienci {% endblock %}
 
 {% block body %}
 
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Imie</th>
-                <th>RodzajUslugi</th>
-                <th>DataGodzina</th>
-                <th>NumerTelefonu</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+        {% if (is_granted('ROLE_USER') or (is_granted('ROLE_ADMIN')))%}
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Imie</th>
+                    <th>Rodzaj Usługi</th>
+                    <th>Data Godzina</th>
+                    <th>Numer Telefonu</th>
+                    <th>Akcje</th>
+                </tr>
+                </thead>
+                <tbody>
         {% for klienci in kliencis %}
             <tr>
                 <td>{{ klienci.id }}</td>
-                <td>{{ klienci.Imie }}</td>
-                <td>{{ klienci.RodzajUslugi }}</td>
+                <td>{{ klienci.Imie}}</td>
+                <td>{{ klienci.RodzajUslugi}}</td>
                 <td>{{ klienci.DataGodzina ? klienci.DataGodzina|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ klienci.NumerTelefonu }}</td>
                 <td>
-                    <a href="{{ path('app_klienci_show', {'id': klienci.id}) }}">show</a>
-                    <a href="{{ path('app_klienci_edit', {'id': klienci.id}) }}">edit</a>
+                    <a href="{{ path('app_klienci_show', {'id': klienci.id}) }}">Pokaż</a>
+                    <a href="{{ path('app_klienci_edit', {'id': klienci.id}) }}">Edycja</a>
                 </td>
             </tr>
         {% else %}
@@ -38,5 +39,34 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_klienci_new') }}">Create new</a>
+            <a class="btn btn-dark" href="{{ path('app_klienci_new') }}" role="button">Zapisz się!</a>
+    {%else%}
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Imie</th>
+                <th>Rodzaj Usługi</th>
+                <th>Data Godzina</th>
+            </tr>
+            </thead>
+            <tbody>
+
+        {% for klienci in kliencis %}
+            <tr>
+                <td>{{ klienci.Imie}}</td>
+                <td>{{ klienci.RodzajUslugi}}</td>
+                <td>{{ klienci.DataGodzina ? klienci.DataGodzina|date('Y-m-d H:i:s') : '' }}</td>
+
+                <td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+
+        <a class="btn btn-dark" href="{{ path('app_klienci_new') }}" role="button">Zapisz się!</a>
+
+
+
+        {% endif %}
 {% endblock %}

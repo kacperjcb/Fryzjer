@@ -3,6 +3,14 @@
 {% block title %}Klienci{% endblock %}
 
 {% block body %}
+    <style>
+        .oneline{
+            width: 100%;
+        }
+        .oneline2{
+            display: inline-block;
+        }
+    </style>
     <h1>Klienci</h1>
 
     <table class="table">
@@ -16,7 +24,7 @@
                 <td>{{ klienci.Imie }}</td>
             </tr>
             <tr>
-                <th>RodzajUslugi</th>
+                <th>Rodzaj Usługi</th>
                 <td>{{ klienci.RodzajUslugi }}</td>
             </tr>
             <tr>
@@ -29,10 +37,11 @@
             </tr>
         </tbody>
     </table>
+<div class="oneline">
+    <div class="oneline2"> <a class="btn btn-primary" href="{{ path('app_klienci_index')}}" role="button">Wróć do listy</a> </div>
+        <div class="oneline2"><a class="btn btn-danger" href="{{ path('app_klienci_edit', {'id': klienci.id}) }}" role="button">Edytuj</a> </div>
 
-    <a href="{{ path('app_klienci_index') }}">back to list</a>
+            <div class="oneline2"> {{ include('klienci/_delete_form.html.twig') }} </div>
+</div>
 
-    <a href="{{ path('app_klienci_edit', {'id': klienci.id}) }}">edit</a>
-
-    {{ include('klienci/_delete_form.html.twig') }}
 {% endblock %}
