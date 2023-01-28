@@ -20,6 +20,7 @@ class KlienciController extends AbstractController
             'kliencis' => $klienciRepository->findAll(),
         ]);
     }
+ 
 
     #[Route('/new', name: 'app_klienci_new', methods: ['GET', 'POST'])]
     public function new(Request $request, KlienciRepository $klienciRepository): Response
@@ -75,4 +76,5 @@ class KlienciController extends AbstractController
 
         return $this->redirectToRoute('app_klienci_index', [], Response::HTTP_SEE_OTHER);
     }
+    
 }

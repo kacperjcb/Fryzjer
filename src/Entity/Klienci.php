@@ -5,7 +5,15 @@ namespace App\Entity;
 use App\Repository\KlienciRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 #[ORM\Entity(repositoryClass: KlienciRepository::class)]
+
+  /** @UniqueEntity(
+  * fields={"DataGodzina"},
+  * errorPath="DataGodzina",
+  * message="Wybierz inną godzinę ponieważ jest już ktoś zarejestrowany na tą godzinę."
+  *)
+  */
 class Klienci
 {
     #[ORM\Id]
@@ -20,10 +28,18 @@ class Klienci
     private $RodzajUslugi;
     #[ORM\Column(type: 'datetime')]
     /**
-    * @Assert\GreaterThanOrEqual("today")
+    * @Assert\GreaterThanOrEqual("today+1days")
     */
+ 
     private $DataGodzina;
-
+    /**
+    * @Assert\Length( 
+    *  min=9,
+    *  max=11,
+    * minMessage = "Numer musi mieć przynajmniej 9 cyfr", 
+    * maxMessage = "Numer powinien mieć maxymalnie 11 cyfr",
+     * ) 
+   */ 
     #[ORM\Column(type: 'integer')]
     private $NumerTelefonu;
 

@@ -40,7 +40,11 @@ class KlienciRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+   
 
+
+
+    
 //    /**
 //     * @return Klienci[] Returns an array of Klienci objects
 //     */
