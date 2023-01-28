@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use App\Repository\KlienciRepository;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: KlienciRepository::class)]
 class Klienci
 {
@@ -18,8 +18,10 @@ class Klienci
 
     #[ORM\Column(type: 'string', length: 255)]
     private $RodzajUslugi;
-
     #[ORM\Column(type: 'datetime')]
+    /**
+    * @Assert\GreaterThanOrEqual("today")
+    */
     private $DataGodzina;
 
     #[ORM\Column(type: 'integer')]
